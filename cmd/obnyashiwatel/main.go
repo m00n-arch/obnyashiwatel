@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/m00n-arch/obnyashiwatel/internal/rules"
 )
@@ -11,9 +12,15 @@ import (
 func main() {
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Print("Enter text: ")
-	x, err := reader.ReadString('\n')
+	inputString, err := reader.ReadString('\n')
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(rules.SwapLetters(x))
+
+	inputSliced := strings.Split(inputString, " ")
+	for i := range inputSliced {
+		inputSliced[i] = rules.SwapLetters(inputSliced[i])
+		fmt.Print(rules.RepeatLetters(inputSliced[i]) + " ")
+
+	}
 }
