@@ -7,12 +7,8 @@ import (
 const maxRepeats = 2
 
 func RepeatLetters(inputText string) string {
-	if random() {
-		// Добавляем 1 к количеству повторов, чтобы избежать добавления пустых символов.
-		return repeat(inputText, rand.Intn(maxRepeats)+1)
-	} else {
-		return inputText
-	}
+	// Добавляем 1 к количеству повторов, чтобы избежать добавления пустых символов.
+	return repeat(inputText, rand.Intn(maxRepeats)+1)
 }
 
 func repeat(inputText string, repeats int) string {
@@ -20,10 +16,4 @@ func repeat(inputText string, repeats int) string {
 		inputText = string([]rune(inputText)[0]) + "-" + inputText
 	}
 	return inputText
-}
-
-const randChance = 3
-
-func random() bool {
-	return rand.Int()%randChance == 0
 }
