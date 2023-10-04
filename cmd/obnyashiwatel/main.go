@@ -13,20 +13,25 @@ import (
 func main() {
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Print("Enter text: ")
-	inputString, err := reader.ReadString('\n')
+	inputText, err := reader.ReadString('\n')
 	if err != nil {
 		panic(err)
 	}
 
-	swapLetters := random.RandomiseFunc(rules.SwapLetters, 0.80)
-	inputDots := random.RandomiseFunc(rules.InputDots, 0.10)
+	swapLetters := random.RandomiseFunc(rules.SwapLetters, 0.70)
+	inputDots := random.RandomiseFunc(rules.AddDots, 0.10)
 	repeatLetters := random.RandomiseFunc(rules.RepeatLetters, 0.20)
 
-	inputSliced := strings.Split(inputString, " ")
-	for i := range inputSliced {
-		inputSliced[i] = swapLetters(inputSliced[i])
-		inputSliced[i] = inputDots(inputSliced[i])
-		fmt.Print(repeatLetters(inputSliced[i]) + " ")
+	textRunes := []rune(inputText)
+	for j := range textRunes {
+		k := string(textRunes[j])
+		textRunes[j] = []rune(swapLetters(k))[0]
+	}
+	inputText = string(textRunes)
 
+	inputWords := strings.Split(inputText, " ")
+	for i := range inputWords {
+		inputWords[i] = inputDots(inputWords[i])
+		fmt.Print(repeatLetters(inputWords[i]) + " ")
 	}
 }

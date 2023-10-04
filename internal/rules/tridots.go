@@ -1,5 +1,5 @@
 package rules
 
-func InputDots(inputText string) string {
+func AddDots(inputText string) string {
 	return inputText + "..."
 }

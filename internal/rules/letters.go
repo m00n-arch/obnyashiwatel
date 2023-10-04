@@ -1,6 +1,5 @@
 package rules
 
-// swapLetters В КАЧЕСТВЕ ПРОГОННОГО ТЕКСТА БУДЕТ ИСПОЛЬЗОВАТЬСЯ ПРЕДЛОЖЕНИЕ "Я ЛЮБЛЮ КЛУБНИКУ". ОЖИДАЕМЫЙ ВЫВОД - "Я ВЮБВЮ КВУБНИКУ"
 func SwapLetters(inputText string) string {
 	var changes = map[rune]rune{
 		'л': 'в',
@@ -16,9 +15,11 @@ func SwapLetters(inputText string) string {
 		for k, v := range changes {
 			if r[i] == k {
 				r[i] = v
+				break
 			}
 			if r[i] == toUpperCase(k) {
 				r[i] = toUpperCase(v)
+				break
 			}
 		}
 	}
