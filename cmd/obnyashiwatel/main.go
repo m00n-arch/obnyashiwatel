@@ -13,8 +13,11 @@ import (
 )
 
 func main() {
+	fileServer := http.FileServer(http.Dir("./static"))
 	http.HandleFunc("/obnyash", obnyash)
-	log.Fatal(http.ListenAndServe(":5000", nil))
+	http.Handle("/", fileServer)
+
+	log.Fatal(http.ListenAndServe(":80", nil))
 }
 
 type request struct {
