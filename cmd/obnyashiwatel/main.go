@@ -33,6 +33,8 @@ func obnyash(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	fmt.Println(r)
+
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
 		fmt.Println(err)
