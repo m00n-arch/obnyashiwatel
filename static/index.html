@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>obnyashiwatel</title>
+    <script>
+        function submitForm(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Get the input value
+            const inputText = document.getElementById("text").value;
+
+            // Create a JSON object
+            const data = { text: inputText };
+
+            // Send the JSON data to your server using the Fetch API
+            fetch("http://obnyashiwatel.vladimish.com:5000/obnyash", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            })
+                .then(response => response.text())
+                .then(responseData => {
+                    const responseContainer = document.getElementById("response-container");
+                    responseContainer.textContent = responseData;
+                })
+                .catch(error => {
+                    // Handle any errors that occur during the fetch request
+                    console.error("Error:", error);
+                });
+        }
+    </script>
+</head>
+<body>
+<h1>*UWU* ObNYAshiwatel by Сашенька *UWU*</h1>
+<p>Всем привет! .W.</p>
+
+<form onsubmit="submitForm(event)" id="inputted">
+    <label for="text">Введите текст, который необходимо обняшить в поле ниже:</label>
+    <input type="text" id="text" name="text"><br><br>
+    <input type="submit" value="Submit">
+</form>
+
+<div id="response-container">
+    <!-- Response text will be displayed here -->
+</div>
+</body>
+</html>
