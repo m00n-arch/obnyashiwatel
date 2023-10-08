@@ -35,16 +35,19 @@ func obnyash(w http.ResponseWriter, r *http.Request) {
 
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
+		return
 	}
 	var re request
 	err = json.Unmarshal(body, &re)
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
+		return
 	}
 	_, err = w.Write([]byte(domain.RunObnyash(re.Text)))
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
+		return
 	}
 }
 
